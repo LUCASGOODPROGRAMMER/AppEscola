@@ -1,4 +1,4 @@
-﻿using AppEscola.RegrasDeNegocio;
+using AppEscola.RegrasDeNegocio;
 
 Alunos[] salaDeAula = new Alunos[350];
 
@@ -20,6 +20,7 @@ void CadastrarAluno()
             Console.WriteLine("---------------------- CADASTRAR ALUNO ----------------------");
             Console.WriteLine();
             Console.WriteLine("Número de Inscrição..........:" + cont);
+
             aluno.Id = cont;
             aluno.NumeroDeMatricula = cont * 1000;
 
@@ -45,9 +46,9 @@ void CadastrarAluno()
         else
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("VAGAS ESGOTADAS!!!");
-            Console.ForegroundColor= ConsoleColor.White;
+            Console.ForegroundColor= ConsoleColor.Red;
             Console.ReadKey();
         }
     }//Fim do Laço
@@ -58,6 +59,8 @@ void CadastrarAluno()
 void ListarAlunos()
 {
     Alunos alunos = new Alunos();
+    Console.WriteLine("================Lista de Alunos================"); 
+   
     for (int i = 0; i < posicao; i++)
     {
         alunos = salaDeAula[i];
@@ -87,20 +90,30 @@ void ConsultarAluno()
     Alunos alunos= new Alunos();
     Console.WriteLine("Insira Numero da matricula do aluno");
     posicao = Convert.ToInt16(Console.ReadLine());
-    alunos = salaDeAula[posicao/1000 - 1];
-   
-    Console.WriteLine("Número da Matricula: " + alunos.NumeroDeMatricula);
+    alunos = salaDeAula[posicao/1000 - 1];   
+   if (alunos != null)
+    {
+        Console.WriteLine("Número da Matricula: " + alunos.NumeroDeMatricula);
 
-    Console.WriteLine("Número de Inscrição................: " + alunos.Id);
+        Console.WriteLine("Número de Inscrição................: " + alunos.Id);
 
 
-    Console.WriteLine("Nome................: " + alunos.Nome);
+        Console.WriteLine("Nome................: " + alunos.Nome);
 
-    Console.WriteLine("Nota1................: " + alunos.Nota1);
+        Console.WriteLine("Nota1................: " + alunos.Nota1);
 
-    Console.WriteLine("Nota2................: " + alunos.Nota2);
+        Console.WriteLine("Nota2................: " + alunos.Nota2);
 
-    Console.Write(alunos.MostrarSituacao());
+        Console.Write(alunos.MostrarSituacao());
+    }
+   else
+    {
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine("Não se encontra alunos Cadastrados");
+        Console.ForegroundColor = ConsoleColor.White;
+
+    }
+
     Console.ReadKey();
    
 }
@@ -108,6 +121,8 @@ void ConsultarAluno()
 void ListarAlunosAprovados()
 {
     Alunos alunos = new Alunos();
+    Console.Clear();
+    Console.WriteLine("================APROVADOS================");
     for (int i = 0; i < posicao; i++)
     {
         alunos = salaDeAula[i];
@@ -137,6 +152,8 @@ void ListarAlunosAprovados()
 void ListarAlunosReprovados()
 {
     Alunos alunos = new Alunos();
+    Console.Clear();
+    Console.WriteLine("================REPROVADOS================");
     for (int i = 0; i < posicao; i++)
     {
         alunos = salaDeAula[i];
@@ -162,7 +179,7 @@ void ListarAlunosReprovados()
 }
 while (opcao != 6)
 {
-    Console.ForegroundColor = ConsoleColor.Red;
+    Console.ForegroundColor = ConsoleColor.White;
     Console.Clear();
     Console.WriteLine("@@@@@@@@@@@@@@@@@@@ MENU @@@@@@@@@@@@@@@@@@@");
     Console.WriteLine();
@@ -230,4 +247,3 @@ while (opcao != 6)
 
 }
 //fim do laço principal
-
