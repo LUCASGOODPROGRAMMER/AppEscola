@@ -105,7 +105,7 @@ void ConsultarAluno()
    
 }
 //alunos aprovados
-void AlunosAprovados()
+void ListarAlunosAprovados()
 {
     Alunos alunos = new Alunos();
     for (int i = 0; i < posicao; i++)
@@ -134,7 +134,7 @@ void AlunosAprovados()
     Console.ReadKey();
 }
 //alunos reprovados
-void AlunosReprovados()
+void ListarAlunosReprovados()
 {
     Alunos alunos = new Alunos();
     for (int i = 0; i < posicao; i++)
@@ -194,12 +194,12 @@ while (opcao != 6)
             }//fim do case 3
         case 4:
             {
-                AlunosAprovados();
+                ListarAlunosAprovados();
                 break;
             }//fim do case 4
         case 5:
             {
-                AlunosReprovados();
+                ListarAlunosReprovados();
                 break;
             }//fim do case 5
         case 6:
