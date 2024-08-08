@@ -45,9 +45,9 @@ void CadastrarAluno()
         else
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("VAGAS ESGOTADAS!!!");
-            Console.ForegroundColor= ConsoleColor.Red;
+            Console.ForegroundColor= ConsoleColor.White;
             Console.ReadKey();
         }
     }//Fim do Laço
@@ -76,6 +76,87 @@ void ListarAlunos()
         Console.Write(alunos.MostrarSituacao());
 
         Console.WriteLine();
+    }
+    Console.ReadKey();
+}
+
+//Função Consultar Aluno
+
+void ConsultarAluno()
+{
+    Alunos alunos= new Alunos();
+    Console.WriteLine("Insira Numero da matricula do aluno");
+    posicao = Convert.ToInt16(Console.ReadLine());
+    alunos = salaDeAula[posicao/1000 - 1];
+   
+    Console.WriteLine("Número da Matricula: " + alunos.NumeroDeMatricula);
+
+    Console.WriteLine("Número de Inscrição................: " + alunos.Id);
+
+
+    Console.WriteLine("Nome................: " + alunos.Nome);
+
+    Console.WriteLine("Nota1................: " + alunos.Nota1);
+
+    Console.WriteLine("Nota2................: " + alunos.Nota2);
+
+    Console.Write(alunos.MostrarSituacao());
+    Console.ReadKey();
+   
+}
+//alunos aprovados
+void AlunosAprovados()
+{
+    Alunos alunos = new Alunos();
+    for (int i = 0; i < posicao; i++)
+    {
+        alunos = salaDeAula[i];
+        Console.ForegroundColor = ConsoleColor.White;
+        if (alunos.MostrarSituacao() == "APROVADO")
+        {           
+           
+                Console.WriteLine("Número da Matricula: " + alunos.NumeroDeMatricula);
+
+                Console.WriteLine("Número de Inscrição................: " + alunos.Id);
+
+
+                Console.WriteLine("Nome................: " + alunos.Nome);
+
+                Console.WriteLine("Nota1................: " + alunos.Nota1);
+
+                Console.WriteLine("Nota2................: " + alunos.Nota2);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(alunos.MostrarSituacao() + "\n");
+           
+        }
+       
+    }
+    Console.ReadKey();
+}
+//alunos reprovados
+void AlunosReprovados()
+{
+    Alunos alunos = new Alunos();
+    for (int i = 0; i < posicao; i++)
+    {
+        alunos = salaDeAula[i];
+        Console.ForegroundColor = ConsoleColor.White;
+        if (alunos.MostrarSituacao() != "APROVADO")
+        {
+
+            Console.WriteLine("Número da Matricula: " + alunos.NumeroDeMatricula);
+
+            Console.WriteLine("Número de Inscrição................: " + alunos.Id);
+
+
+            Console.WriteLine("Nome................: " + alunos.Nome);
+
+            Console.WriteLine("Nota1................: " + alunos.Nota1);
+
+            Console.WriteLine("Nota2................: " + alunos.Nota2);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(alunos.MostrarSituacao() + "\n");
+        }
     }
     Console.ReadKey();
 }
@@ -108,17 +189,17 @@ while (opcao != 6)
             }//fim do case 2
         case 3:
             {
-
+                ConsultarAluno();
                 break;
             }//fim do case 3
         case 4:
             {
-
+                AlunosAprovados();
                 break;
             }//fim do case 4
         case 5:
             {
-
+                AlunosReprovados();
                 break;
             }//fim do case 5
         case 6:
@@ -149,3 +230,4 @@ while (opcao != 6)
 
 }
 //fim do laço principal
+
